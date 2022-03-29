@@ -1,4 +1,4 @@
-#Google Analytics Starter Kit
+# Google Analytics Starter Kit
 Create a set of ThoughtSpot visualizations based on Google Analytics data hosted in Snowflake
 
 # Installation instructions
