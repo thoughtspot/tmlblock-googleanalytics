@@ -7,7 +7,7 @@ Create a set of ThoughtSpot visualizations based on Google Analytics data hosted
 - Geographic Audience Analysis
 - Page Behaviour Analysis
 - Site Statistics Analysis
-- Traffic Source Analysis - Google Analytics
+- Traffic Source Analysis
 
 # Liveboards included
 
