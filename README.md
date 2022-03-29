@@ -7,7 +7,7 @@ Create a set of ThoughtSpot visualizations based on Google Analytics data hosted
 - Load your JSON data files into their respective Snowflake tables using your preferred loading method.
 - Log into your ThoughtSpot instance and create an Embrace connection to each of the five views that have flattened the JSON data into a relational table structure.
 - Import the TML for the worksheets and verify that it has all been imported without any errors.
-- Import the TML for the pinboards and verify that it has all been imported without any errors.
+- Import the TML for the liveboards and verify that it has all been imported without any errors.
 
 # Worksheets included
 - AdWords Analysis 
@@ -31,6 +31,6 @@ Create a set of ThoughtSpot visualizations based on Google Analytics data hosted
 - Site Statistics
 
 
---
+
 
 
