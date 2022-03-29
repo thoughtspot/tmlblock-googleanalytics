@@ -21,7 +21,7 @@ Create a set of ThoughtSpot visualizations based on Google Analytics data hosted
 ## Behavior
 - Page Analytics
 - Site Statistics
-- 
+
 
 # Installation instructions
 
