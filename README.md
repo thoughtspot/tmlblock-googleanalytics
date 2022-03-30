@@ -49,13 +49,7 @@ This starter kit uses the Google [analytics reporting API v4](https://developers
 - Import the TML for the liveboards and verify that it has all been imported without any errors.
 
 
-# Liveboard Examples
-
-## Demo Video (Youtube) 
-
-### [SpotApp for Google Analytics and Google Ads](https://www.youtube.com/watch?v=ldOKJ2tX8Fg)
-
-## Screenshots
+# Liveboard Screenshots
 
 ### Adwords 
 <img width="1500" alt="Screen Shot 2022-03-30 at 9 27 11 AM" src="https://user-images.githubusercontent.com/102629468/160886071-f56075bd-11c3-4bf1-9f3c-4ba75fce58d7.png">
