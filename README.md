@@ -1,5 +1,5 @@
 # Google Analytics Starter Kit
-Create a set of ThoughtSpot visualizations based on Google Analytics data hosted in Snowflake
+Create a set of ThoughtSpot visualizations based on Google Analytics data hosted in Snowflake. Analyze user acquisition and user behavior of your website with search, drill-downs, and spotIQ. 
 
 # Worksheets included
 - AdWords Analysis 
@@ -48,6 +48,29 @@ This starter kit uses the Google [analytics reporting API v4](https://developers
 - Import the TML for the worksheets and verify that it has all been imported without any errors.
 - Import the TML for the liveboards and verify that it has all been imported without any errors.
 
+
+# Liveboard Examples
+
+## Demo Video (Youtube) 
+
+### [SpotApp for Google Analytics and Google Ads](https://www.youtube.com/watch?v=ldOKJ2tX8Fg)
+
+## Screenshots
+
+### Adwords 
+<img width="1500" alt="Screen Shot 2022-03-30 at 9 27 11 AM" src="https://user-images.githubusercontent.com/102629468/160886071-f56075bd-11c3-4bf1-9f3c-4ba75fce58d7.png">
+
+### Traffic Sources 
+<img width="1500" alt="Screen Shot 2022-03-30 at 9 36 55 AM" src="https://user-images.githubusercontent.com/102629468/160886548-60bcd1a2-fdb1-416c-844c-619c6c72f8f6.png">
+
+### Geographic Location
+<img width="1500" alt="Screen Shot 2022-03-30 at 9 29 42 AM" src="https://user-images.githubusercontent.com/102629468/160886633-9c871e8b-2688-4f8c-bc6f-c6780e69e24e.png">
+
+### Page Analytics 
+<img width="1500" alt="Screen Shot 2022-03-30 at 9 30 04 AM" src="https://user-images.githubusercontent.com/102629468/160886791-e140667c-1f4a-45d4-b28b-47c8bd128857.png">
+
+### Site Statistics 
+<img width="1500" alt="Screen Shot 2022-03-30 at 9 30 23 AM" src="https://user-images.githubusercontent.com/102629468/160886910-3e49b232-1028-4c0f-ab90-93b800a54f8d.png">
 
 
 
