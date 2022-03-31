@@ -1,7 +1,15 @@
-# Google Analytics Starter Kit
+# Google Analytics TML Blocks
 Create a set of ThoughtSpot visualizations based on Google Analytics data hosted in Snowflake. Analyze user acquisition and user behavior of your website with search, drill-downs, and spotIQ. 
 
-# Worksheets included
+# Artifacts 
+
+## Python Script 
+Python Script (HelloAnalytics.py) to download data via the Google Analytics API.
+
+## Snowflake DDL
+Snowflake DDL (snowflake_ga.sql)  for creating tables and views that flatten the Google Analytics JSON data.
+
+## Worksheets 
 - AdWords Analysis 
 - Demographic Audience Analysis
 - Geographic Audience Analysis
@@ -9,19 +17,15 @@ Create a set of ThoughtSpot visualizations based on Google Analytics data hosted
 - Site Statistics Analysis
 - Traffic Source Analysis
 
-# Liveboards included
-
-## Acquisition
+## Liveboards included
+### Acquisition
  - Adwords
  - Traffic Sources
-
-## Audience
+### Audience
 - Geographic Location
-
-## Behavior
+### Behavior
 - Page Analytics
 - Site Statistics
-
 
 # Installation instructions
 
