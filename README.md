@@ -16,8 +16,10 @@ Snowflake DDL (snowflake_ga.sql)  for creating tables and views that flatten the
 - Page Behaviour Analysis
 - Site Statistics Analysis
 - Traffic Source Analysis
+- Manifest_worksheet.yaml
 
 ## Liveboards included
+- Manifest_liveboard.yaml
 ### Acquisition
  - Adwords
  - Traffic Sources
@@ -47,11 +49,29 @@ This starter kit uses the Google [analytics reporting API v4](https://developers
 - Use the snowflake_ga.sql DDL script to create the necessary staging tables and flattening views in your Snowflake data warehouse.
 - Load your JSON data files into their respective Snowflake tables using your preferred loading method.
 
-## Connect ThoughtSpot and import TML
+## Connect ThoughtSpot 
 - Log into your ThoughtSpot instance and create an Embrace connection to each of the five views that have flattened the JSON data into a relational table structure.
-- Import the TML for the worksheets and verify that it has all been imported without any errors.
-- Import the TML for the liveboards and verify that it has all been imported without any errors.
 
+## Import TML 
+Combine all Worksheet TML files into a ZIP file: 
+- Manifest_liveboard.yaml 
+- Adwords Analysis - Google.worksheet.tml
+- Demographic Audience Anal.worksheet.tml
+- Geographic Audience Analy.worksheet.tml
+- Page Behaviour Analysis-.worksheet.tml
+- Site Statistics Analysis.worksheet.tml
+- Traffic Source analysis-.worksheet.tml
+
+Combine all liveboard TML files into a ZIP file: 
+- Manifest_liveboard.yaml
+- Acquisition - Adwords.pinboard.tml
+- Acquisition - Traffic Sou.pinboard.tml
+- Audience - Geographic Loc.pinboard.tml
+- Behaviour - Site Statisti.pinboard.tml
+- Behaviour - Page Analytic.pinboard.tml
+
+Import the zipped file for the worksheets and verify that it has all been imported without any errors.
+Import the zipped for the liveboards and verify that it has all been imported without any errors.
 
 # Liveboard Screenshots
 
