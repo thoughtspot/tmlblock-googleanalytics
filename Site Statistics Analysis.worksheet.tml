@@ -1,0 +1,148 @@
+worksheet:
+  name: Site Statistics Analysis - Google Analytics
+  description: The site statistics provides insights for site administrator to understand page loading times and traffic loads. This data captures the time of the session.
+  tables:
+  - name: GA_SITE_STATISTICS
+  table_paths:
+  - id: GA_SITE_STATISTICS_1
+    table: GA_SITE_STATISTICS
+    join_path:
+    - {}
+  formulas:
+  - name: . Avg Page Download Time (secs)
+    expr: "average ( [GA_SITE_STATISTICS_1::ga:avgPageDownloadTime] )"
+  - name: . Avg Page Load Time (secs)
+    expr: "average ( [GA_SITE_STATISTICS_1::ga:avgPageLoadTime] )"
+  - name: . Avg Page Views per Session
+    expr: "safe_divide ( [# Page Views] , [# Sessions] )"
+  - name: "# Page Views"
+    expr: "sum ( [GA_SITE_STATISTICS_1::ga:pageviews] )"
+  - name: "# Sessions"
+    expr: "sum ( [GA_SITE_STATISTICS_1::ga:sessions] )"
+  - name: . Avg Redirection Time (secs)
+    expr: "average ( [GA_SITE_STATISTICS_1::ga:avgRedirectionTime] )"
+  - name: . Avg Server Connection Time (secs)
+    expr: "average ( [GA_SITE_STATISTICS_1::ga:avgServerConnectionTime] )"
+  - name: . Avg Server Reponse Time (sec)
+    expr: "average ( [GA_SITE_STATISTICS_1::ga:serverResponseTime] )"
+  - name: Hour of Day
+    expr: "hour_of_day ( [GA_SITE_STATISTICS_1::ga:time] )"
+  worksheet_columns:
+  - name: Date
+    description: The date of the session
+    column_id: "GA_SITE_STATISTICS_1::ga:date"
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: "# Sessions"
+    description: Number of sessions
+    formula_id: "# Sessions"
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: "# Page Views"
+    description: The total number of pageviews for the property.
+    formula_id: "# Page Views"
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: . Avg Page Views per Session
+    description: "The average number of pages viewed during a session, including repeated views of a single page."
+    formula_id: . Avg Page Views per Session
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Country
+    description: "Users' country, derived from their IP addresses or Geographical IDs."
+    column_id: "GA_SITE_STATISTICS_1::ga:country"
+    properties:
+      column_type: ATTRIBUTE
+      geo_config:
+        country: true
+  - name: Hostname
+    description: The hostname from which the tracking request was made.
+    column_id: "GA_SITE_STATISTICS_1::ga:hostname"
+    properties:
+      column_type: ATTRIBUTE
+  - name: Time
+    description: time of transaction
+    column_id: "GA_SITE_STATISTICS_1::ga:time"
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Page
+    description: A page on the website specified by path and/or query parameters. Use this with hostname to get the page's full URL.
+    column_id: "GA_SITE_STATISTICS_1::ga:pagePath"
+    properties:
+      column_type: ATTRIBUTE
+  - name: Browser
+    description: "The name of users' browsers, for example, Internet Explorer or Firefox."
+    column_id: "GA_SITE_STATISTICS_1::ga:browser"
+    properties:
+      column_type: ATTRIBUTE
+  - name: Operating System Version
+    description: "The version of users' operating system, i.e., XP for Windows, PPC for Macintosh."
+    column_id: "GA_SITE_STATISTICS_1::ga:operatingSystemVersion"
+    properties:
+      column_type: ATTRIBUTE
+  - name: Language
+    description: "The language, in ISO-639 code format (e.g., en-gb for British English), provided by the HTTP Request for the browser."
+    column_id: "GA_SITE_STATISTICS_1::ga:language"
+    properties:
+      column_type: ATTRIBUTE
+  - name: . Avg Page Load Time (secs)
+    description: "The average time (in seconds) pages from the sample set take to load, from initiation of the pageview (e.g., a click on a page link) to load completion in the browser."
+    formula_id: . Avg Page Load Time (secs)
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: . Avg Page Download Time (secs)
+    description: The average time (in seconds) to download this page.
+    formula_id: . Avg Page Download Time (secs)
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: . Avg Redirection Time (secs)
+    description: "The average time (in seconds) spent in redirects before fetching this page. If there are no redirects, this is 0."
+    formula_id: . Avg Redirection Time (secs)
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: . Avg Server Connection Time (secs)
+    description: The average time (in seconds) spent in establishing a TCP connection to this page.
+    formula_id: . Avg Server Connection Time (secs)
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: . Avg Server Reponse Time (sec)
+    description: The average time (in seconds) the site's server takes to respond to users' requests; this includes the network time from users' locations to the server.
+    formula_id: . Avg Server Reponse Time (sec)
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Hour of Day
+    formula_id: Hour of Day
+    properties:
+      column_type: ATTRIBUTE
+  - name: Device Category
+    description: "The type of device: desktop, tablet, or mobile."
+    column_id: "GA_SITE_STATISTICS_1::ga:deviceCategory"
+    properties:
+      column_type: ATTRIBUTE
+  - name: Operating System
+    description: "Users' operating system, for example, Windows, Linux, Macintosh, or iOS."
+    column_id: "GA_SITE_STATISTICS_1::ga:operatingSystem"
+    properties:
+      column_type: ATTRIBUTE
+  properties:
+    is_bypass_rls: false
+    join_progressive: true
+guid: 60756206-1d80-431b-ac3d-85f1a882d492

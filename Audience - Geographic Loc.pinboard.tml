@@ -1,0 +1,298 @@
+pinboard:
+  name: Audience - Geographic Location
+  description: The Geographic Audience provides insights for ecommerce marketers to understand which regions of the world users are originating from. This provides the ability to drill to channel and source
+  visualizations:
+  - answer:
+      name: Top 5 Countries by Users
+      tables:
+      - id: Geographic Audience Analysis - Google Analytics
+        name: Geographic Audience Analysis - Google Analytics
+      search_query: "[Country] top 5 [# Users]"
+      answer_columns:
+      - name: "# Users"
+      - name: Country
+      table:
+        table_columns:
+        - column_id: Country
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: "# Users"
+          headline_aggregation: SUM
+        ordered_column_ids:
+        - Country
+        - "# Users"
+        wrap_table_header: true
+        client_state: "{\"widthState\":{},\"wrapTableHeader\":true}"
+      chart:
+        type: PIE
+        chart_columns:
+        - column_id: Country
+        - column_id: "# Users"
+          show_data_labels: true
+        axis_configs:
+        - x:
+          - Country
+          y:
+          - "# Users"
+        locked: true
+        client_state: "{\"seriesColors\":{\"australia\":\"#56d3a8\",\"Australia\":\"#56d3a8\",\"united states\":\"#71a1f4\",\"United States\":\"#71a1f4\",\"canada\":\"#f47e89\",\"Canada\":\"#f47e89\",\"new zealand\":\"#47515f\",\"New Zealand\":\"#47515f\",\"united kingdom\":\"#2359b6\",\"United Kingdom\":\"#2359b6\",\"germany\":\"#FCC838\",\"Germany\":\"#ffa97e\",\"estonia\":\"#82DFE9\",\"Estonia\":\"#82DFE9\",\"ireland\":\"#48D1E0\",\"Ireland\":\"#48D1E0\",\"sweden\":\"#71A1F4\",\"Sweden\":\"#71A1F4\",\"finland\":\"#2E75F0\",\"Finland\":\"#2E75F0\"},\"chartProperties\":{\"gridLines\":{},\"showRoundedNumbers\":true,\"responsiveLayoutPreference\":3.0,\"chartSpecific\":{},\"mapviewport\":{\"zoomLevel\":2.0,\"center\":[35410.53378645331,5307972.457898852]}},\"axisProperties\":{\"844e9fb1-483f-4aba-b377-f3b19a818533\":{\"linkedColumns\":[\"# Users\"],\"axisType\":\"Y\",\"isOpposite\":false},\"50eac359-b26a-45bf-8d5a-ab82c22fbade\":{\"linkedColumns\":[\"Country\"],\"axisType\":\"X\"}},\"systemSeriesColors\":{\"Australia\":\"#56d3a8\",\"United States\":\"#71a1f4\",\"Canada\":\"#f47e89\",\"New Zealand\":\"#47515f\",\"United Kingdom\":\"#2359b6\"},\"version\":\"V3\",\"columnProperties\":{\"Country\":{},\"# Users\":{\"dataLabels\":true}}}"
+      display_mode: CHART_MODE
+    id: Viz_1
+  - answer:
+      name: Users by Country
+      tables:
+      - id: Geographic Audience Analysis - Google Analytics
+        name: Geographic Audience Analysis - Google Analytics
+      search_query: "[Country] [# Users]"
+      answer_columns:
+      - name: "# Users"
+      - name: Country
+      table:
+        table_columns:
+        - column_id: Country
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: "# Users"
+          headline_aggregation: SUM
+        ordered_column_ids:
+        - Country
+        - "# Users"
+        wrap_table_header: true
+        client_state: "{\"widthState\":{},\"wrapTableHeader\":true}"
+      chart:
+        type: GEO_AREA
+        chart_columns:
+        - column_id: Country
+        - column_id: "# Users"
+          show_data_labels: true
+        axis_configs:
+        - x:
+          - Country
+          y:
+          - "# Users"
+        locked: true
+        client_state: "{\"systemMultiColorSeriesColors\":{\"# Users\":{\"Country\":[\"#ffffb2\",\"#fddd87\",\"#fba35d\",\"#f75534\",\"#f9140a\",\"#d70315\",\"#b10026\"]}},\"seriesColors\":{\"australia\":\"#56d3a8\",\"Australia\":\"#56d3a8\",\"united states\":\"#71a1f4\",\"United States\":\"#71a1f4\",\"canada\":\"#f47e89\",\"Canada\":\"#f47e89\",\"new zealand\":\"#47515f\",\"New Zealand\":\"#47515f\",\"united kingdom\":\"#2359b6\",\"United Kingdom\":\"#2359b6\",\"germany\":\"#FCC838\",\"Germany\":\"#ffa97e\",\"estonia\":\"#82DFE9\",\"Estonia\":\"#82DFE9\",\"ireland\":\"#48D1E0\",\"Ireland\":\"#48D1E0\",\"sweden\":\"#71A1F4\",\"Sweden\":\"#71A1F4\",\"finland\":\"#2E75F0\",\"Finland\":\"#2E75F0\"},\"chartProperties\":{\"gridLines\":{},\"showRoundedNumbers\":true,\"responsiveLayoutPreference\":3.0,\"chartSpecific\":{},\"mapviewport\":{\"zoomLevel\":2.0,\"center\":[35410.53378645331,5307972.457898852]}},\"axisProperties\":{\"844e9fb1-483f-4aba-b377-f3b19a818533\":{\"linkedColumns\":[\"# Users\"],\"axisType\":\"Y\",\"isOpposite\":false},\"50eac359-b26a-45bf-8d5a-ab82c22fbade\":{\"linkedColumns\":[\"Country\"],\"axisType\":\"X\"}},\"version\":\"V3\",\"columnProperties\":{\"Country\":{},\"# Users\":{\"dataLabels\":true}}}"
+      display_mode: CHART_MODE
+    id: Viz_2
+  - answer:
+      name: Analysis by Top 10 Country by Channel
+      tables:
+      - id: Geographic Audience Analysis - Google Analytics
+        name: Geographic Audience Analysis - Google Analytics
+      search_query: "[Country] [# Users] [Channel] [Source] [Country] in ( top 10 [# Users] [Country] ) [. Avg Duration per Session (secs)] [# Sessions] [% Bounce Rate]"
+      answer_columns:
+      - name: "# Users"
+      - name: . Avg Duration per Session (secs)
+      - name: Source
+      - name: Country
+      - name: Channel
+      - name: "# Sessions"
+      - name: '% Bounce Rate'
+      table:
+        table_columns:
+        - column_id: Country
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Channel
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Source
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: "# Users"
+          headline_aggregation: SUM
+        - column_id: . Avg Duration per Session (secs)
+          headline_aggregation: TABLE_AGGR
+        - column_id: "# Sessions"
+          headline_aggregation: SUM
+        - column_id: '% Bounce Rate'
+          headline_aggregation: TABLE_AGGR
+        ordered_column_ids:
+        - Country
+        - Channel
+        - Source
+        - "# Users"
+        - . Avg Duration per Session (secs)
+        - "# Sessions"
+        - '% Bounce Rate'
+        wrap_table_header: true
+        client_state: "{\"widthState\":{},\"wrapTableHeader\":true}"
+      chart:
+        type: PIVOT_TABLE
+        chart_columns:
+        - column_id: Country
+        - column_id: Channel
+        - column_id: Source
+        - column_id: "# Users"
+          show_data_labels: true
+        - column_id: . Avg Duration per Session (secs)
+        - column_id: "# Sessions"
+        - column_id: '% Bounce Rate'
+        axis_configs:
+        - x:
+          - Country
+          y:
+          - "# Users"
+          - . Avg Duration per Session (secs)
+          - '% Bounce Rate'
+          color:
+          - Channel
+        - y:
+          - "# Users"
+          - . Avg Duration per Session (secs)
+          - '% Bounce Rate'
+        - x:
+          - Country
+          y:
+          - "# Users"
+          - . Avg Duration per Session (secs)
+          - '% Bounce Rate'
+        - y:
+          - "# Users"
+          - . Avg Duration per Session (secs)
+          - '% Bounce Rate'
+          color:
+          - Channel
+        locked: true
+        client_state: "{\"seriesColors\":{\"australia\":\"#56d3a8\",\"Australia\":\"#56d3a8\",\"united states\":\"#71a1f4\",\"United States\":\"#71a1f4\",\"canada\":\"#f47e89\",\"Canada\":\"#f47e89\",\"new zealand\":\"#47515f\",\"New Zealand\":\"#47515f\",\"united kingdom\":\"#2359b6\",\"United Kingdom\":\"#2359b6\",\"germany\":\"#FCC838\",\"Germany\":\"#ffa97e\",\"estonia\":\"#82DFE9\",\"Estonia\":\"#82DFE9\",\"ireland\":\"#48D1E0\",\"Ireland\":\"#48D1E0\",\"sweden\":\"#71A1F4\",\"Sweden\":\"#71A1F4\",\"finland\":\"#2E75F0\",\"Finland\":\"#2E75F0\"},\"chartProperties\":{\"gridLines\":{},\"showRoundedNumbers\":true,\"responsiveLayoutPreference\":3.0,\"chartSpecific\":{\"pivotState\":{\"columnExpandedPaths\":[],\"rowExpandedPaths\":[]},\"isHeatmapOverlayed\":true,\"hidePivotSummaries\":false}},\"axisProperties\":{\"844e9fb1-483f-4aba-b377-f3b19a818533\":{\"linkedColumns\":[\"# Users\"],\"axisType\":\"Y\",\"isOpposite\":false},\"50eac359-b26a-45bf-8d5a-ab82c22fbade\":{\"linkedColumns\":[\"Country\"],\"axisType\":\"X\"},\"33b4cefb-931f-4dbd-aa9d-9c17444885c1\":{\"linkedColumns\":[\". Avg Duration per Session (secs)\"],\"axisType\":\"Y\",\"isOpposite\":true},\"4790d593-69a1-4152-93f7-9f0557b7876e\":{\"linkedColumns\":[\"% Bounce Rate\"],\"axisType\":\"Y\",\"isOpposite\":true}},\"version\":\"V3\",\"columnProperties\":{\"Country\":{},\"Channel\":{},\"Source\":{},\"# Users\":{\"dataLabels\":true},\". Avg Duration per Session (secs)\":{},\"# Sessions\":{},\"% Bounce Rate\":{}}}"
+      display_mode: CHART_MODE
+    id: Viz_3
+  - answer:
+      name: Top 5 Countries by Sessions
+      tables:
+      - id: Geographic Audience Analysis - Google Analytics
+        name: Geographic Audience Analysis - Google Analytics
+      search_query: "[Country] top 5 [# Users] [# Sessions]"
+      answer_columns:
+      - name: "# Users"
+      - name: Country
+      - name: "# Sessions"
+      table:
+        table_columns:
+        - column_id: Country
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: "# Users"
+          headline_aggregation: SUM
+        - column_id: "# Sessions"
+          headline_aggregation: SUM
+        ordered_column_ids:
+        - Country
+        - "# Users"
+        - "# Sessions"
+        wrap_table_header: true
+        client_state: "{\"widthState\":{},\"wrapTableHeader\":true}"
+      chart:
+        type: PIE
+        chart_columns:
+        - column_id: Country
+        - column_id: "# Users"
+          show_data_labels: true
+        - column_id: "# Sessions"
+        axis_configs:
+        - x:
+          - Country
+          y:
+          - "# Users"
+        locked: true
+        client_state: "{\"seriesColors\":{\"australia\":\"#56d3a8\",\"Australia\":\"#56d3a8\",\"united states\":\"#71a1f4\",\"United States\":\"#71a1f4\",\"canada\":\"#f47e89\",\"Canada\":\"#f47e89\",\"new zealand\":\"#47515f\",\"New Zealand\":\"#47515f\",\"united kingdom\":\"#2359b6\",\"United Kingdom\":\"#2359b6\",\"germany\":\"#FCC838\",\"Germany\":\"#ffa97e\",\"estonia\":\"#82DFE9\",\"Estonia\":\"#82DFE9\",\"ireland\":\"#48D1E0\",\"Ireland\":\"#48D1E0\",\"sweden\":\"#71A1F4\",\"Sweden\":\"#71A1F4\",\"finland\":\"#2E75F0\",\"Finland\":\"#2E75F0\"},\"chartProperties\":{\"gridLines\":{},\"showRoundedNumbers\":true,\"responsiveLayoutPreference\":3.0,\"chartSpecific\":{}},\"axisProperties\":{\"844e9fb1-483f-4aba-b377-f3b19a818533\":{\"linkedColumns\":[\"# Users\"],\"axisType\":\"Y\",\"isOpposite\":false},\"50eac359-b26a-45bf-8d5a-ab82c22fbade\":{\"linkedColumns\":[\"Country\"],\"axisType\":\"X\"}},\"systemSeriesColors\":{\"Australia\":\"#56d3a8\",\"United States\":\"#71a1f4\",\"Canada\":\"#f47e89\",\"New Zealand\":\"#47515f\",\"United Kingdom\":\"#2359b6\"},\"version\":\"V3\",\"columnProperties\":{\"Country\":{},\"# Users\":{\"dataLabels\":true},\"# Sessions\":{}}}"
+      display_mode: CHART_MODE
+    id: Viz_4
+  - answer:
+      name: Average Duration (secs) by Country
+      tables:
+      - id: Geographic Audience Analysis - Google Analytics
+        name: Geographic Audience Analysis - Google Analytics
+      search_query: "[Country] top 5 [# Users] [# Sessions] [. Avg Duration per Session (secs)]"
+      answer_columns:
+      - name: "# Users"
+      - name: Country
+      - name: . Avg Duration per Session (secs)
+      - name: "# Sessions"
+      table:
+        table_columns:
+        - column_id: Country
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: "# Users"
+          headline_aggregation: SUM
+        - column_id: "# Sessions"
+          headline_aggregation: SUM
+        - column_id: . Avg Duration per Session (secs)
+          headline_aggregation: TABLE_AGGR
+        ordered_column_ids:
+        - Country
+        - "# Users"
+        - "# Sessions"
+        - . Avg Duration per Session (secs)
+        wrap_table_header: true
+        client_state: "{\"widthState\":{},\"wrapTableHeader\":true}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Country
+        - column_id: "# Users"
+          show_data_labels: true
+        - column_id: "# Sessions"
+        - column_id: . Avg Duration per Session (secs)
+          show_data_labels: true
+        axis_configs:
+        - x:
+          - Country
+          y:
+          - . Avg Duration per Session (secs)
+        locked: true
+        client_state: "{\"seriesColors\":{\"australia\":\"#56d3a8\",\"Australia\":\"#56d3a8\",\"united states\":\"#71a1f4\",\"United States\":\"#71a1f4\",\"canada\":\"#f47e89\",\"Canada\":\"#f47e89\",\"new zealand\":\"#47515f\",\"New Zealand\":\"#47515f\",\"united kingdom\":\"#2359b6\",\"United Kingdom\":\"#2359b6\",\"# Users\":\"#2E75F0\",\". Avg Duration per Session (secs)\":\"#bec6d0\",\"germany\":\"#ffa97e\",\"Germany\":\"#ffa97e\",\"estonia\":\"#82DFE9\",\"Estonia\":\"#82DFE9\",\"ireland\":\"#48D1E0\",\"Ireland\":\"#48D1E0\",\"sweden\":\"#71A1F4\",\"Sweden\":\"#71A1F4\",\"finland\":\"#2E75F0\",\"Finland\":\"#2E75F0\"},\"chartProperties\":{\"gridLines\":{},\"showRoundedNumbers\":true,\"responsiveLayoutPreference\":3.0,\"chartSpecific\":{},\"allLabels\":true},\"axisProperties\":{\"50eac359-b26a-45bf-8d5a-ab82c22fbade\":{\"linkedColumns\":[\"Country\"],\"axisType\":\"X\"},\"663670b6-108d-4ad5-b81a-785c6b0bb2e1\":{\"linkedColumns\":[\". Avg Duration per Session (secs)\"],\"axisType\":\"Y\",\"isOpposite\":true}},\"systemSeriesColors\":{\"Australia\":\"#56d3a8\",\"United States\":\"#71a1f4\",\"Canada\":\"#f47e89\",\"New Zealand\":\"#47515f\",\"United Kingdom\":\"#2359b6\",\"# Users\":\"#2E75F0\",\". Avg Duration per Session (secs)\":\"#48D1E0\"},\"version\":\"V3\",\"columnProperties\":{\"Country\":{},\"# Users\":{\"dataLabels\":true},\"# Sessions\":{},\". Avg Duration per Session (secs)\":{\"dataLabels\":true}}}"
+      display_mode: CHART_MODE
+    id: Viz_5
+  - answer:
+      name: Users by Location
+      tables:
+      - id: Geographic Audience Analysis - Google Analytics
+        name: Geographic Audience Analysis - Google Analytics
+      search_query: "[# Users] [Latitude] [Longitude]"
+      answer_columns:
+      - name: Longitude
+      - name: "# Users"
+      - name: Latitude
+      table:
+        table_columns:
+        - column_id: Latitude
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: Longitude
+          headline_aggregation: COUNT_DISTINCT
+        - column_id: "# Users"
+          headline_aggregation: SUM
+        ordered_column_ids:
+        - Latitude
+        - Longitude
+        - "# Users"
+        wrap_table_header: true
+        client_state: "{\"widthState\":{},\"wrapTableHeader\":true}"
+      chart:
+        type: GEO_HEATMAP
+        chart_columns:
+        - column_id: Latitude
+        - column_id: Longitude
+        - column_id: "# Users"
+          show_data_labels: true
+        axis_configs:
+        - x:
+          - Latitude
+          - Longitude
+          y:
+          - "# Users"
+        locked: true
+        client_state: "{\"systemMultiColorSeriesColors\":{\"# Users\":{\"e481b5ee-7ab6-4860-9618-284226a493d0\":[\"#ffffb2\",\"#fddd87\",\"#fba35d\",\"#f75534\",\"#f9140a\",\"#d70315\",\"#b10026\"]}},\"seriesColors\":{\"australia\":\"#56d3a8\",\"Australia\":\"#56d3a8\",\"united states\":\"#71a1f4\",\"United States\":\"#71a1f4\",\"canada\":\"#f47e89\",\"Canada\":\"#f47e89\",\"new zealand\":\"#47515f\",\"New Zealand\":\"#47515f\",\"united kingdom\":\"#2359b6\",\"United Kingdom\":\"#2359b6\",\"germany\":\"#FCC838\",\"Germany\":\"#ffa97e\",\"estonia\":\"#82DFE9\",\"Estonia\":\"#82DFE9\",\"ireland\":\"#48D1E0\",\"Ireland\":\"#48D1E0\",\"sweden\":\"#71A1F4\",\"Sweden\":\"#71A1F4\",\"finland\":\"#2E75F0\",\"Finland\":\"#2E75F0\"},\"chartProperties\":{\"gridLines\":{},\"showRoundedNumbers\":true,\"responsiveLayoutPreference\":3.0,\"chartSpecific\":{}},\"axisProperties\":{\"8c9e177e-5a8e-4919-9159-c32f6de430a4\":{\"linkedColumns\":[\"# Users\"],\"axisType\":\"Y\",\"isOpposite\":false},\"4ba041ee-0247-444d-9fef-b4bcdc58bbda\":{\"linkedColumns\":[\"Latitude\",\"Longitude\"],\"axisType\":\"X\"}},\"systemSeriesColors\":{\"# Users\":\"#F04152\"},\"version\":\"V3\",\"columnProperties\":{\"Latitude\":{},\"Longitude\":{},\"# Users\":{\"dataLabels\":true}}}"
+      display_mode: CHART_MODE
+    id: Viz_6
+  filters:
+  - column: Date
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      size: SMALL
+    - visualization_id: Viz_4
+      size: SMALL
+    - visualization_id: Viz_6
+      size: MEDIUM
+    - visualization_id: Viz_5
+      size: MEDIUM_SMALL
+    - visualization_id: Viz_2
+      size: LARGE
+    - visualization_id: Viz_3
+      size: LARGE
+guid: ca181893-6756-4fdd-a322-bb7dcbf47acb

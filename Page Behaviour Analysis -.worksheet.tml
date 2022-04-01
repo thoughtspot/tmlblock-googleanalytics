@@ -1,0 +1,154 @@
+worksheet:
+  name: Page Behaviour Analysis - Google Analytics
+  description: The Page Behaviour provides insights for ecommerce marketers and web developers to understand how users are interacting with the site.
+  tables:
+  - name: GA_PAGE_BEHAVIOUR
+  table_paths:
+  - id: GA_PAGE_BEHAVIOUR_1
+    table: GA_PAGE_BEHAVIOUR
+    join_path:
+    - {}
+  formulas:
+  - name: '% Entrances per Page View'
+    expr: "safe_divide ( [# Entrances] , [# Page Views] ) * 100"
+  - name: "# Entrances"
+    expr: "sum ( [GA_PAGE_BEHAVIOUR_1::ga:entrances] )"
+  - name: '% Exits per Page View'
+    expr: "safe_divide ( [# Exits] , [# Page Views] ) * 100"
+  - name: "# Exits"
+    expr: "sum ( [GA_PAGE_BEHAVIOUR_1::ga:exits] )"
+  - name: . Avg Page Value
+    expr: "average ( [GA_PAGE_BEHAVIOUR_1::ga:pageValue] )"
+  - name: . Avg Page Views per Session
+    expr: "safe_divide ( [# Page Views] , [# Sessions] )"
+  - name: "# Sessions"
+    expr: "sum ( [GA_PAGE_BEHAVIOUR_1::ga:sessions] )"
+  - name: . Avg Time on Page
+    expr: "safe_divide ( [# Time on Page (secs)] , [# Page Views] )"
+  - name: "# Page Views"
+    expr: "sum ( [GA_PAGE_BEHAVIOUR_1::ga:pageviews] )"
+  - name: "# Time on Page (secs)"
+    expr: "sum ( [GA_PAGE_BEHAVIOUR_1::ga:timeOnPage] )"
+  worksheet_columns:
+  - name: Date
+    description: The date of the session
+    column_id: "GA_PAGE_BEHAVIOUR_1::ga:date"
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Source
+    description: "The source of referrals. For manual campaign tracking, it is the value of the utm_source campaign tracking parameter. For AdWords autotagging, it is google. If you use neither, it is the domain of the source (e.g., document.referrer) referring the users. It may also contain a port address. If users arrived without a referrer, its value is (direct)."
+    column_id: "GA_PAGE_BEHAVIOUR_1::ga:source"
+    properties:
+      column_type: ATTRIBUTE
+  - name: "# Sessions"
+    description: Number of sessions
+    formula_id: "# Sessions"
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: "# Page Views"
+    description: The total number of pageviews for the property.
+    formula_id: "# Page Views"
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: . Avg Page Views per Session
+    description: "The average number of pages viewed during a session, including repeated views of a single page."
+    formula_id: . Avg Page Views per Session
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Country
+    description: "Users' country, derived from their IP addresses or Geographical IDs."
+    column_id: "GA_PAGE_BEHAVIOUR_1::ga:country"
+    properties:
+      column_type: ATTRIBUTE
+      geo_config:
+        country: true
+  - name: Hostname
+    description: The hostname from which the tracking request was made.
+    column_id: "GA_PAGE_BEHAVIOUR_1::ga:hostname"
+    properties:
+      column_type: ATTRIBUTE
+  - name: Page
+    description: A page on the website specified by path and/or query parameters. Use this with hostname to get the page's full URL.
+    column_id: "GA_PAGE_BEHAVIOUR_1::ga:pagePath"
+    properties:
+      column_type: ATTRIBUTE
+  - name: Second Page
+    description: The second page in users' sessions.
+    column_id: "GA_PAGE_BEHAVIOUR_1::ga:secondPagePath"
+    properties:
+      column_type: ATTRIBUTE
+  - name: Page Title
+    description: The page's title. Multiple pages might have the same page title.
+    column_id: "GA_PAGE_BEHAVIOUR_1::ga:pageTitle"
+    properties:
+      column_type: ATTRIBUTE
+  - name: Landing Page
+    description: "The first page in users' sessions, or the landing page."
+    column_id: "GA_PAGE_BEHAVIOUR_1::ga:landingPagePath"
+    properties:
+      column_type: ATTRIBUTE
+  - name: Exit Page
+    description: The last page or exit page in users' sessions.
+    column_id: "GA_PAGE_BEHAVIOUR_1::ga:exitPagePath"
+    properties:
+      column_type: ATTRIBUTE
+  - name: . Avg Page Value
+    description: "The average value of this page or set of pages, which is equal to (ga:transactionRevenue + ga:goalValueAll) / ga:uniquePageviews."
+    formula_id: . Avg Page Value
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: "# Entrances"
+    description: "The number of entrances to the property measured as the first pageview in a session, typically used with landingPagePath."
+    formula_id: "# Entrances"
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: '% Entrances per Page View'
+    description: The percentage of pageviews in which this page was the entrance.
+    formula_id: '% Entrances per Page View'
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: "# Time on Page (secs)"
+    description: "Time (in seconds) users spent on a particular page, calculated by subtracting the initial view time for a particular page from the initial view time for a subsequent page. This metric does not apply to exit pages of the property."
+    formula_id: "# Time on Page (secs)"
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: . Avg Time on Page
+    description: The average time users spent viewing this page or a set of pages.
+    formula_id: . Avg Time on Page
+    properties:
+      column_type: MEASURE
+      aggregation: AVERAGE
+      index_type: DONT_INDEX
+  - name: "# Exits"
+    description: The number of exits from the property.
+    formula_id: "# Exits"
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: '% Exits per Page View'
+    description: The percentage of exits from the property that occurred out of the total pageviews.
+    formula_id: '% Exits per Page View'
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  properties:
+    is_bypass_rls: false
+    join_progressive: true
+guid: 8a7032c3-14aa-4cea-9395-dfcaedba0869
