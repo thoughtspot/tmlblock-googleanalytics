@@ -1,175 +1,178 @@
-USE DATABASE GOOGLE_ANALYTICS;
-CREATE OR REPLACE TABLE "GOOGLE_ANALYTICS"."PUBLIC"."RAW_TRAFFIC_SOURCE" (
-  "SOURCE" VARIANT
-) 
-COMMENT = 'variant storage of google analytics for traffic source ';
+create or replace view FIVETRAN.GOOGLE_ANALYTICS_THOUGHTSPOT.GA_AD_ANALYTICS(
+"ga:date",
+"ga:adGroup",
+"ga:adContent",
+"ga:adDistributionNetwork",
+"ga:campaign",
+"ga:adSlot",
+"ga:impressions",
+"ga:adClicks",
+"ga:adCost",
+"ga:CPM",
+"ga:CPC",
+"ga:transactionRevenue",
+"ga:sessions",
+"ga:bounces",
+"ga:users",
+"ga:pageviews"
+) as
+select
+"DATE" as "ga:date",
+"AD_GROUP" as "ga:adGroup",
+"AD_CONTENT" as "ga:adContent",
+"AD_DISTRIBUTION_NETWORK" as "ga:adDistributionNetwork",
+"CAMPAIGN" as "ga:campaign",
+"AD_SLOT" as "ga:adSlot",
+"IMPRESSIONS" as "ga:impressions",
+"AD_CLICKS" as "ga:adClicks",
+"AD_COST" as "ga:adCost",
+"CPM" as "ga:CPM",
+"CPC" as "ga:CPC",
+"TRANSACTION_REVENUE" as "ga:transactionRevenue",
+"SESSIONS" as "ga:sessions",
+"BOUNCES" as "ga:bounces",
+"USERS" as "ga:users",
+"PAGEVIEWS" as "ga:pageviews"
+from "FIVETRAN"."GOOGLE_ANALYTICS_THOUGHTSPOT"."GA_ADWORDS";
 
-CREATE OR REPLACE VIEW GA_TRAFFIC_SOURCE AS (
-  select 
-    VALUE:dimensions[0]::string as "ga:userType"
-    --,VALUE:dimensions[1]::string as "ga:date"
-    ,TO_DATE(VALUE:dimensions[1]::string,'YYYYMMDD') as "ga:date"
-    ,VALUE:dimensions[2]::string as "ga:campaign"
-    ,VALUE:dimensions[3]::string as "ga:source"
-    ,VALUE:dimensions[4]::string as "ga:medium"
-    ,VALUE:dimensions[5]::string as "ga:keyword"
-    ,VALUE:dimensions[6]::string as "ga:adContent"
-    ,VALUE:dimensions[7]::string as "ga:socialNetwork"
-    ,VALUE:dimensions[8]::string as "ga:channelGrouping"
-    
-    ,VALUE:metrics[0]:values[0]::integer as "ga:sessions"
-    ,VALUE:metrics[0]:values[1]::integer as "ga:users"
-    ,VALUE:metrics[0]:values[2]::integer as "ga:bounces"
-    ,VALUE:metrics[0]:values[3]::double as "ga:sessionDuration"
-    ,VALUE:metrics[0]:values[4]::double as "ga:pageviews"
-    ,VALUE:metrics[0]:values[5]::integer as "ga:organicSearches"
-  from
-    "GOOGLE_ANALYTICS"."PUBLIC"."RAW_TRAFFIC_SOURCE"
-  ,lateral flatten( input => SOURCE:reports[0]:data:rows )
-  )
-  ;
-  
-CREATE OR REPLACE TABLE "GOOGLE_ANALYTICS"."PUBLIC"."RAW_GEO_AUDIENCE" (
-  "SOURCE" VARIANT
-) 
-COMMENT = 'variant storage of google analytics for geo audience ';
+create or replace view FIVETRAN.GOOGLE_ANALYTICS_THOUGHTSPOT.GA_SITE_STATISTICS(
+"ga:date",
+"ga:time",
+"ga:hostname",
+"ga:pagePath",
+"ga:country",
+"ga:browser",
+"ga:operatingSystemVersion",
+"ga:deviceCategory",
+"ga:operatingSystem",
+"ga:language",
+"ga:sessions",
+"ga:pageviews",
+"ga:avgPageLoadTime",
+"ga:avgPageDownloadTime",
+"ga:avgRedirectionTime",
+"ga:avgServerConnectionTime",
+"ga:serverResponseTime"
+) as
+select
+"DATE" as "ga:date",
+NULL as "ga:time",
+"HOSTNAME" as "ga:hostname",
+"PAGE_PATH" as "ga:pagePath",
+"COUNTRY" as "ga:country",
+"BROWSER" as "ga:browser",
+"OPERATING_SYSTEM_VERSION" as "ga:operatingSystemVersion",
+"DEVICE_CATEGORY" as "ga:deviceCategory",
+"OPERATING_SYSTEM" as "ga:operatingSystem",
+"LANGUAGE" as "ga:language",
+"SESSIONS" as "ga:sessions",
+"PAGEVIEWS" as "ga:pageviews",
+"AVG_PAGE_LOAD_TIME" as "ga:avgPageLoadTime",
+"AVG_PAGE_DOWNLOAD_TIME" as "ga:avgPageDownloadTime",
+"AVG_REDIRECTION_TIME" as "ga:avgRedirectionTime",
+"AVG_SERVER_CONNECTION_TIME" as "ga:avgServerConnectionTime",
+"SERVER_RESPONSE_TIME" as "ga:serverResponseTime"
+from "FIVETRAN"."GOOGLE_ANALYTICS_THOUGHTSPOT"."GA_STATISTICS";
 
-CREATE OR REPLACE VIEW GA_GEO_AUDIENCE AS (
-  select 
-    TO_DATE(VALUE:dimensions[0]::string,'YYYYMMDD') as "ga:date"
-    ,VALUE:dimensions[1]::string as "ga:country"
-    ,VALUE:dimensions[2]::string as "ga:region"
-    ,VALUE:dimensions[3]::double as "ga:latitude"
-    ,VALUE:dimensions[4]::double as "ga:longitude"
-    ,VALUE:dimensions[5]::string as "ga:channelGrouping"
-    ,VALUE:dimensions[6]::string as "ga:userType"
-    ,VALUE:dimensions[7]::string as "ga:source"
-    ,VALUE:dimensions[8]::string as "ga:medium" 
-    
-    ,VALUE:metrics[0]:values[0]::integer as "ga:sessions"
-    ,VALUE:metrics[0]:values[1]::integer as "ga:users"
-    ,VALUE:metrics[0]:values[2]::integer as "ga:bounces"
-    ,VALUE:metrics[0]:values[3]::double as "ga:sessionDuration"
-    ,VALUE:metrics[0]:values[4]::double as "ga:pageviews"
-  from
-    "GOOGLE_ANALYTICS"."PUBLIC"."RAW_GEO_AUDIENCE"
-  ,lateral flatten( input => SOURCE:reports[0]:data:rows )
-  )
-  ; 
-  
-CREATE OR REPLACE TABLE "GOOGLE_ANALYTICS"."PUBLIC"."RAW_DEMOGRAPHICS_AUDIENCE" (
-  "SOURCE" VARIANT
-) 
-COMMENT = 'variant storage of google analytics for demographice audience ';
+create or replace view FIVETRAN.GOOGLE_ANALYTICS_THOUGHTSPOT.GA_TRAFFIC_SOURCE(
+"ga:userType",
+"ga:date",
+"ga:campaign",
+"ga:source",
+"ga:medium",
+"ga:keyword",
+"ga:adContent",
+"ga:socialNetwork",
+"ga:channelGrouping",
+"ga:sessions",
+"ga:users",
+"ga:bounces",
+"ga:sessionDuration",
+"ga:pageviews",
+"ga:organicSearches"
+) as
+select
+"USER_TYPE" as "ga:userType",
+"DATE" as "ga:date",
+"CAMPAIGN" as "ga:campaign",
+"SOURCE" as "ga:source",
+"MEDIUM" as "ga:medium",
+"KEYWORD" as "ga:keyword",
+"AD_CONTENT" as "ga:adContent",
+"SOCIAL_NETWORK" as "ga:socialNetwork",
+"CHANNEL_GROUPING" as "ga:channelGrouping",
+"SESSIONS" as "ga:sessions",
+"USERS" as "ga:users",
+"BOUNCES" as "ga:bounces",
+"SESSION_DURATION" as "ga:sessionDuration",
+"PAGEVIEWS" as "ga:pageviews",
+"ORGANIC_SEARCHES" as "ga:organicSearches"
+from "FIVETRAN"."GOOGLE_ANALYTICS_THOUGHTSPOT"."GA_TRAFFIC";
 
-CREATE OR REPLACE VIEW GA_DEMOGRAPHIC_AUDIENCE AS (
-  select 
-    TO_DATE(VALUE:dimensions[0]::string,'YYYYMMDD') as "ga:date"
-    ,VALUE:dimensions[1]::string as "ga:userAgeBracket"
-    ,VALUE:dimensions[2]::string as "ga:userGender"
-    ,VALUE:dimensions[3]::string as "ga:interestAffinityCategory"
-    ,VALUE:dimensions[4]::string as "ga:channelGrouping"
-    ,VALUE:dimensions[5]::string as "ga:userType"
-    ,VALUE:dimensions[6]::string as "ga:source"
-    ,VALUE:dimensions[7]::string as "ga:medium" 
-    
-    ,VALUE:metrics[0]:values[0]::integer as "ga:sessions"
-    ,VALUE:metrics[0]:values[1]::integer as "ga:users"
-    ,VALUE:metrics[0]:values[2]::integer as "ga:bounces"
-    ,VALUE:metrics[0]:values[3]::double as "ga:sessionDuration"
-    ,VALUE:metrics[0]:values[4]::double as "ga:pageviews"
-  from
-    "GOOGLE_ANALYTICS"."PUBLIC"."RAW_DEMOGRAPHICS_AUDIENCE"
-  ,lateral flatten( input => SOURCE:reports[0]:data:rows )
-  )
-  ; 
+create or replace view FIVETRAN.GOOGLE_ANALYTICS_THOUGHTSPOT.GA_GEO_AUDIENCE(
+"ga:date",
+"ga:country",
+"ga:region",
+"ga:latitude",
+"ga:longitude",
+"ga:channelGrouping",
+"ga:userType",
+"ga:source",
+"ga:medium",
+"ga:sessions",
+"ga:users",
+"ga:bounces",
+"ga:sessionDuration",
+"ga:pageviews"
+) as
+select
+"DATE" as "ga:date",
+"COUNTRY" as "ga:country",
+"REGION" as "ga:region",
+"LATITUDE" as "ga:latitude",
+"LONGITUDE" as "ga:longitude",
+"CHANNEL_GROUPING" as "ga:channelGrouping",
+"USER_TYPE" as "ga:userType",
+"SOURCE" as "ga:source",
+"MEDIUM" as "ga:medium",
+"SESSIONS" as "ga:sessions",
+"USERS" as "ga:users",
+"BOUNCES" as "ga:bounces",
+"SESSION_DURATION" as "ga:sessionDuration",
+"PAGEVIEWS" as "ga:pageviews"
+from "FIVETRAN"."GOOGLE_ANALYTICS_THOUGHTSPOT"."GA_GEO";
 
-CREATE OR REPLACE TABLE "GOOGLE_ANALYTICS"."PUBLIC"."RAW_PAGE_BEHAVIOUR" (
-  "SOURCE" VARIANT
-) 
-COMMENT = 'variant storage of google analytics for page behaviour ';
-
-CREATE OR REPLACE VIEW GA_PAGE_BEHAVIOUR AS (
-  select 
-    TO_DATE(VALUE:dimensions[0]::string,'YYYYMMDD') as "ga:date"
-    ,VALUE:dimensions[1]::string as "ga:hostname"
-    ,VALUE:dimensions[2]::string as "ga:pagePath"
-    ,VALUE:dimensions[3]::string as "ga:landingPagePath"
-    ,VALUE:dimensions[4]::string as "ga:secondPagePath"
-    ,VALUE:dimensions[5]::string as "ga:exitPagePath"
-    ,VALUE:dimensions[6]::string as "ga:pageTitle"
-    ,VALUE:dimensions[7]::string as "ga:source"
-    ,VALUE:dimensions[8]::string as "ga:country"
-    
-    ,VALUE:metrics[0]:values[0]::integer as "ga:sessions"
-    ,VALUE:metrics[0]:values[1]::integer as "ga:entrances"
-    ,VALUE:metrics[0]:values[2]::integer as "ga:pageviews"
-    ,VALUE:metrics[0]:values[3]::double as "ga:timeOnPage"
-    ,VALUE:metrics[0]:values[4]::double as "ga:exits"
-    ,VALUE:metrics[0]:values[5]::double as "ga:pageValue"
-  from
-    "GOOGLE_ANALYTICS"."PUBLIC"."RAW_PAGE_BEHAVIOUR"
-  ,lateral flatten( input => SOURCE:reports[0]:data:rows )
-  )
-  ; 
-    
-CREATE OR REPLACE TABLE "GOOGLE_ANALYTICS"."PUBLIC"."RAW_SITE_STATISTICS" (
-  "SOURCE" VARIANT
-) 
-COMMENT = 'variant storage of google analytics for site technical statistics ';
-
-CREATE OR REPLACE VIEW GA_SITE_STATISTICS AS (
-  select 
-    TO_DATE(left(VALUE:dimensions[0],8)::string,'YYYYMMDD') as "ga:date"
-    ,TO_TIME(right(VALUE:dimensions[0]::string,4)::string,'HH24MI') as "ga:time"
-    ,VALUE:dimensions[1]::string as "ga:hostname"
-    ,VALUE:dimensions[2]::string as "ga:pagePath"
-    ,VALUE:dimensions[3]::string as "ga:country"
-    ,VALUE:dimensions[4]::string as "ga:browser"
-    ,VALUE:dimensions[5]::string as "ga:operatingSystemVersion"
-    ,VALUE:dimensions[6]::string as "ga:deviceCategory"
-    ,VALUE:dimensions[7]::string as "ga:operatingSystem"
-    ,VALUE:dimensions[8]::string as "ga:language"
-    
-    ,VALUE:metrics[0]:values[0]::integer as "ga:sessions"
-    ,VALUE:metrics[0]:values[1]::integer as "ga:pageviews"
-    ,VALUE:metrics[0]:values[2]::integer as "ga:avgPageLoadTime"
-    ,VALUE:metrics[0]:values[3]::double as "ga:avgPageDownloadTime"
-    ,VALUE:metrics[0]:values[4]::double as "ga:avgRedirectionTime"
-    ,VALUE:metrics[0]:values[5]::double as "ga:avgServerConnectionTime"
-    ,VALUE:metrics[0]:values[6]::double as "ga:serverResponseTime"
-  from
-    "GOOGLE_ANALYTICS"."PUBLIC"."RAW_SITE_STATISTICS"
-  ,lateral flatten( input => SOURCE:reports[0]:data:rows )
-  )
-  ; 
-
-CREATE OR REPLACE TABLE "GOOGLE_ANALYTICS"."PUBLIC"."RAW_AD_ANALYTICS" (
-  "SOURCE" VARIANT
-) 
-COMMENT = 'variant storage of google analytics for adword analytics ';
-
-CREATE OR REPLACE VIEW GA_AD_ANALYTICS AS (
-  select 
-    TO_DATE(left(VALUE:dimensions[0],8)::string,'YYYYMMDD') as "ga:date"
-    ,VALUE:dimensions[1]::string as "ga:adGroup"
-    ,VALUE:dimensions[2]::string as "ga:adContent"
-    ,VALUE:dimensions[3]::string as "ga:adDistributionNetwork"
-    ,VALUE:dimensions[4]::string as "ga:campaign"
-    ,VALUE:dimensions[5]::string as "ga:adSlot"
-    
-    ,VALUE:metrics[0]:values[0]::integer as "ga:impressions"
-    ,VALUE:metrics[0]:values[1]::integer as "ga:adClicks"
-    ,VALUE:metrics[0]:values[2]::integer as "ga:adCost"
-    ,VALUE:metrics[0]:values[3]::double as "ga:CPM"
-    ,VALUE:metrics[0]:values[4]::double as "ga:CPC"
-    ,VALUE:metrics[0]:values[5]::double as "ga:transactionRevenue"
-    ,VALUE:metrics[0]:values[6]::double as "ga:sessions"
-    ,VALUE:metrics[0]:values[7]::double as "ga:bounces"
-    ,VALUE:metrics[0]:values[8]::double as "ga:users"
-   ,VALUE:metrics[0]:values[9]::double as "ga:pageviews"
-  from
-    "GOOGLE_ANALYTICS"."PUBLIC"."RAW_AD_ANALYTICS"
-  ,lateral flatten( input => SOURCE:reports[0]:data:rows )
-  )
-  ; 
+create or replace view FIVETRAN.GOOGLE_ANALYTICS_THOUGHTSPOT.GA_PAGE_BEHAVIOUR(
+"ga:date",
+"ga:hostname",
+"ga:pagePath",
+"ga:landingPagePath",
+"ga:secondPagePath",
+"ga:exitPagePath",
+"ga:pageTitle",
+"ga:source",
+"ga:country",
+"ga:sessions",
+"ga:entrances",
+"ga:pageviews",
+"ga:timeOnPage",
+"ga:exits",
+"ga:pageValue"
+) as
+select
+"DATE" as "ga:date",
+"HOSTNAME" as "ga:hostname",
+"PAGE_PATH" as "ga:pagePath",
+"LANDING_PAGE_PATH" as "ga:landingPagePath",
+"SECOND_PAGE_PATH" as "ga:secondPagePath",
+"EXIT_PAGE_PATH" as "ga:exitPagePath",
+"PAGE_TITLE" as "ga:pageTitle",
+"SOURCE" as "ga:source",
+"COUNTRY" as "ga:country",
+"SESSIONS" as "ga:sessions",
+"ENTRANCES" as "ga:entrances",
+"PAGEVIEWS" as "ga:pageviews",
+"TIME_ON_PAGE" as "ga:timeOnPage",
+"EXITS" as "ga:exits",
+"PAGE_VALUE" as "ga:pageValue"
+from "FIVETRAN"."GOOGLE_ANALYTICS_THOUGHTSPOT"."GA_PAGE_TRACKING";
